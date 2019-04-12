@@ -53,7 +53,7 @@ public class TelaUserSwing extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("StreamChampion");
-        setBackground(java.awt.Color.lightGray);
+        setBackground(new java.awt.Color(255, 102, 102));
         setIconImage(icon.getImage());
         setResizable(false);
 
@@ -257,7 +257,6 @@ public class TelaUserSwing extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblFanRpm;
     private javax.swing.JLabel lblFanRpmOshi;
@@ -267,12 +266,6 @@ public class TelaUserSwing extends javax.swing.JFrame {
     private javax.swing.JLabel lblTempGpu;
     private javax.swing.JLabel lblTempGpuJSensor;
     private javax.swing.JLabel lblTempProcessor;
-    private javax.swing.JLabel lblTempProcessor1;
-    private javax.swing.JLabel lblTempProcessor10;
-    private javax.swing.JLabel lblTempProcessor11;
-    private javax.swing.JLabel lblTempProcessor7;
-    private javax.swing.JLabel lblTempProcessor8;
-    private javax.swing.JLabel lblTempProcessor9;
     private javax.swing.JLabel lblTempProcessorOshi;
     private javax.swing.JLabel lblUseGpu;
     private javax.swing.JLabel lblUseGpuJSensor;
