@@ -1,0 +1,10 @@
+https://www.google.com.br/search?rlz=1C1CHBD_pt-PTBR845BR845&q=jdbc+java+sql+server&spell=1&sa=X&ved=0ahUKEwjw34fBmdPhAhXrDbkGHev7CawQBQgpKAA&biw=1366&bih=667
+
+https://www.microsoft.com/pt-BR/download/details.aspx?id=11774
+
+https://docs.microsoft.com/pt-br/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server?view=sql-server-2017
+
+https://docs.microsoft.com/pt-br/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java?view=sql-server-2017
+
+https://docs.microsoft.com/pt-br/azure/sql-database/sql-database-connect-query-java
+
