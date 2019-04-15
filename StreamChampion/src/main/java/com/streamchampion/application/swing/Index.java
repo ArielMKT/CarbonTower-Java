@@ -13,8 +13,8 @@ public class Index extends JFrame {
 
     private ImageIcon icon = new ImageIcon("icon.jpeg");
     private JButton btnLogout;
-    private JPanel panelTexts;
     private JPanel panelResultTexts;
+    private JPanel panelTexts;
     private JLabel lblFanRpm;
     private JLabel lblFanRpmOshi;
     private JLabel lblMemoryRam;
@@ -48,14 +48,14 @@ public class Index extends JFrame {
         });
 
         lblWelcome = new javax.swing.JLabel();
-        panelTexts = new javax.swing.JPanel();
+        panelResultTexts = new javax.swing.JPanel();
         lblFanRpmOshi = new javax.swing.JLabel();
         lblUseProcessorOshi = new javax.swing.JLabel();
         lblTempProcessorOshi = new javax.swing.JLabel();
         lblMemoryRamOshi = new javax.swing.JLabel();
         lblTempGpuJSensor = new javax.swing.JLabel();
         lblUseGpuJSensor = new javax.swing.JLabel();
-        panelResultTexts = new javax.swing.JPanel();
+        panelTexts = new javax.swing.JPanel();
         lblFanRpm = new javax.swing.JLabel();
         lblUseProcessor = new javax.swing.JLabel();
         lblTempProcessor = new javax.swing.JLabel();
@@ -79,9 +79,9 @@ public class Index extends JFrame {
         lblWelcome.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 18)); // NOI18N
         lblWelcome.setText("Bem-vindo nome-jogador!");
 
-        panelTexts.setBackground(new java.awt.Color(225, 225, 225));
-        javax.swing.GroupLayout panelTextsLayout = new javax.swing.GroupLayout(panelTexts);
-        panelTexts.setLayout(panelTextsLayout);
+        panelResultTexts.setBackground(new java.awt.Color(225, 225, 225));
+        javax.swing.GroupLayout panelTextsLayout = new javax.swing.GroupLayout(panelResultTexts);
+        panelResultTexts.setLayout(panelTextsLayout);
         panelTextsLayout.setHorizontalGroup(
             panelTextsLayout.createParallelGroup(
                 javax.swing.GroupLayout.Alignment.LEADING
@@ -109,7 +109,7 @@ public class Index extends JFrame {
                                 .addComponent(
                                     lblMemoryRamOshi,
                                     javax.swing.GroupLayout.PREFERRED_SIZE,
-                                    140,
+                                    150,
                                     javax.swing.GroupLayout.PREFERRED_SIZE
                                 ).addGroup(
                                 javax.swing.GroupLayout.Alignment.LEADING,
@@ -205,9 +205,9 @@ public class Index extends JFrame {
         lblUseGpu.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblUseGpu.setText("Uso da placa de vídeo: ");
 
-        panelResultTexts.setBackground(new java.awt.Color(225, 225, 225));
-        javax.swing.GroupLayout panelResultTextsLayout = new javax.swing.GroupLayout(panelResultTexts);
-        panelResultTexts.setLayout(panelResultTextsLayout);
+        panelTexts.setBackground(new java.awt.Color(225, 225, 225));
+        javax.swing.GroupLayout panelResultTextsLayout = new javax.swing.GroupLayout(panelTexts);
+        panelTexts.setLayout(panelResultTextsLayout);
         panelResultTextsLayout.setHorizontalGroup(
             panelResultTextsLayout
                 .createParallelGroup(
@@ -322,7 +322,7 @@ public class Index extends JFrame {
                         51,
                         51
                     ).addComponent(
-                    panelResultTexts,
+                        panelTexts,
                     javax.swing.GroupLayout.PREFERRED_SIZE,
                     javax.swing.GroupLayout.DEFAULT_SIZE,
                     javax.swing.GroupLayout.PREFERRED_SIZE
@@ -336,9 +336,9 @@ public class Index extends JFrame {
                                 19,
                                 19
                             ).addComponent(
-                            panelTexts,
+                                panelResultTexts,
                             javax.swing.GroupLayout.PREFERRED_SIZE,
-                            100,
+                            150,
                             javax.swing.GroupLayout.PREFERRED_SIZE
                         ).addContainerGap(
                             javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -415,7 +415,7 @@ public class Index extends JFrame {
                                 4,
                                 4
                             ).addComponent(
-                            panelResultTexts,
+                                panelTexts,
                             javax.swing.GroupLayout.PREFERRED_SIZE,
                             javax.swing.GroupLayout.DEFAULT_SIZE,
                             javax.swing.GroupLayout.PREFERRED_SIZE
@@ -423,7 +423,7 @@ public class Index extends JFrame {
                     ).addGroup(
                         layout.createSequentialGroup()
                             .addComponent(
-                                panelTexts,
+                                    panelResultTexts,
                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                 250,
                                 javax.swing.GroupLayout.PREFERRED_SIZE
@@ -449,25 +449,20 @@ public class Index extends JFrame {
 
         SystemInformation systemInformation = new SystemInformation();
 
-        lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
-        lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
-        lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
-            + "% / " +
-            systemInformation.getRam().getTotalMemory());
-        lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
         try {
-            while (test) {
-                lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
+            do{
+                lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
                 lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
 //                lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryAvailable());
                 lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
                     + "% / " +
                     systemInformation.getRam().getTotalMemory());
+                System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
-                Thread.sleep(15000);
-            }
+                Thread.sleep(5000);
+            }while (test);
         }catch(InterruptedException e){
 
         }
