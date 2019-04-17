@@ -1,6 +1,7 @@
 package com.streamchampion.application.swing;
 
 import com.streamchampion.application.oshi.SystemInformation;
+import com.streamchampion.resources.database.Connection;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -494,6 +495,7 @@ public class Index extends JFrame {
 
         /* Create and display the form */
 
+        new Connection().getConnection();
         Index index  = new Index();
         index.setVisible(true);
         index.setInformation();

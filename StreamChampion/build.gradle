@@ -27,7 +27,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.profesorfalken/jSensors
     //https://github.com/profesorfalken/jSensors
     compile group: 'com.profesorfalken', name: 'jSensors', version: '2.2.1'
-    
+
+    // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+    compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.3.0.jre8-preview'
+
+
     //https:\/\/www.youtube.com\/watch?v=__QxqLGVDbg
 
 }
