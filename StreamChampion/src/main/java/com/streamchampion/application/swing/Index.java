@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class Index extends Components {
 
-    private ImageIcon icon = new ImageIcon("icon.jpeg");
+    private ImageIcon icon = new ImageIcon("src/main/resources/icons/icon.jpeg");
 
     public Index() {
         initComponents();

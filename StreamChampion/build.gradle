@@ -31,6 +31,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
     compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.3.0.jre8-preview'
 
+    // https://mvnrepository.com/artifact/org.openbase/jeoparnaire
+    compile group: 'org.openbase', name: 'jeoparnaire', version: '1.0.2'
+
 
     //https:\/\/www.youtube.com\/watch?v=__QxqLGVDbg
 
