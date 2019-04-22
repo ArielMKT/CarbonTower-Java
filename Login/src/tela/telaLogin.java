@@ -45,9 +45,9 @@ public class telaLogin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new tela.JTextFieldHint(new JTextField(),"user-icon", "Login");
+        TextFieldNome = new tela.JTextFieldHint(new JTextField(),"user-icon", "Login");
         ;
-        jTextField2 = new JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
+        TextFieldPassword = new JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
         ;
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -79,21 +79,21 @@ public class telaLogin extends javax.swing.JFrame {
         jLabel1.setText("StreamChampion");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 121, 165, -1));
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        TextFieldNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                TextFieldNomeActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 22, 150, 30));
+        jPanel2.add(TextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 22, 150, 30));
 
-        jTextField2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        TextFieldPassword.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                TextFieldPasswordActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 22, 150, 30));
+        jPanel2.add(TextFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 22, 150, 30));
 
         jButton1.setBackground(new java.awt.Color(58, 65, 84));
         jButton1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -152,13 +152,13 @@ public class telaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void TextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_TextFieldPasswordActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void TextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_TextFieldNomeActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
         jButton1.setBackground(new Color(84,95,124));
@@ -254,13 +254,13 @@ public class telaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TextFieldNome;
+    private javax.swing.JTextField TextFieldPassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
