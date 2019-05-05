@@ -1,6 +1,7 @@
 package com.streamchampion.application.swing;
 
 import com.streamchampion.application.oshi.SystemInformation;
+import com.streamchampion.resources.database.InsertOshi;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -51,6 +52,7 @@ public class Index extends Components {
         boolean test = true;
 
         SystemInformation systemInformation = new SystemInformation();
+        InsertOshi insertOshi = new InsertOshi();
 
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
@@ -64,6 +66,13 @@ public class Index extends Components {
                     systemInformation.getRam().getTotalMemory());
                 System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
+
+                insertOshi.insertOshi(
+                    systemInformation.getRam().getMemoryUseInPercentage(),
+                    systemInformation.getCpu().getFansSpeed(),
+                    systemInformation.getCpu().getCPUTemperature()
+                );
+
                 Thread.sleep(5000);
             }while (test);
         }catch(InterruptedException e){
