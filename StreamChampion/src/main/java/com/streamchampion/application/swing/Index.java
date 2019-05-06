@@ -8,6 +8,17 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import com.google.gson.Gson;
 
 public class Index extends Components {
 
@@ -16,7 +27,8 @@ public class Index extends Components {
     public Index() {
         initComponents();
     }
-//    @SuppressWarnings("unchecked")
+
+    //    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -48,7 +60,7 @@ public class Index extends Components {
 
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setInformation(){
+    public void setInformation() {
         boolean test = true;
 
         SystemInformation systemInformation = new SystemInformation();
@@ -57,25 +69,54 @@ public class Index extends Components {
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
         try {
-            do{
+            do {
                 lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
                 lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
 //                lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryAvailable());
                 lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
-                    + "% / " +
-                    systemInformation.getRam().getTotalMemory());
+                        + "% / " +
+                        systemInformation.getRam().getTotalMemory());
                 System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-                insertOshi.insertOshi(
-                    systemInformation.getRam().getMemoryUseInPercentage(),
-                    systemInformation.getCpu().getFansSpeed(),
-                    systemInformation.getCpu().getCPUTemperature()
-                );
+                String params = "details={\"memoryRam\":\" " +
+                        systemInformation.getRam().getMemoryUseInPercentage() + "\",\"tempCpu\":\" " +
+                        systemInformation.getCpu().getCPUTemperature() + "\"} ";
+
+                URL url = new URL("http://localhost:7000/test");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type", "application/json; utf-8");
+                con.setRequestProperty("Accept", "application/json");
+                con.setDoOutput(true);
+                String jsonInputString = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
+                        + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = jsonInputString.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+                try (BufferedReader br = new BufferedReader(
+                        new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine = null;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    int responseCode = con.getResponseCode();
+                    System.out.println(responseCode + " " + response.toString());
+                }
+
+                //insertOshi.insertOshi(
+                //        systemInformation.getRam().getMemoryUseInPercentage(),
+                //        systemInformation.getCpu().getFansSpeed(),
+                //        systemInformation.getCpu().getCPUTemperature()
+                //);
 
                 Thread.sleep(5000);
-            }while (test);
-        }catch(InterruptedException e){
+            } while (test);
+        } catch (Exception e) {
 
         }
     }
