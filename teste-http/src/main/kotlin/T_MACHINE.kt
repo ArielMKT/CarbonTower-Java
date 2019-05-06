@@ -1,0 +1,3 @@
+object T_MACHINE {
+
+}
