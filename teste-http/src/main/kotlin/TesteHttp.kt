@@ -5,6 +5,8 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object TesteHttp{
 
     fun startServer(){
+        Connection.connectWithCarbonTowerDatabase()
+
         val javalin = Javalin.create().start(7000)
         javalin.get("") {ctx -> ctx.result("hello world") }
         javalin.post("test") {ctx ->
