@@ -1,5 +1,7 @@
 import io.javalin.Javalin
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object TesteHttp{
@@ -9,7 +11,7 @@ object TesteHttp{
 
         val javalin = Javalin.create().start(7000)
         javalin.get("") {ctx -> ctx.result("hello world") }
-        javalin.post("test") {ctx ->
+        javalin.post("oshi") {ctx ->
 
             val body = ctx.body<Oshi>()
 
@@ -22,6 +24,28 @@ object TesteHttp{
                 }
             }
             ctx.status(200).result(" OK")
+        }
+        javalin.post("login"){ctx ->
+
+            val body = ctx.body<Login>()
+
+            println("${body.login}${body.password}")
+
+            transaction {
+                if(T_USER.select{
+                    T_USER.idUser
+                        .eq(body.login)
+                        .and(T_USER.userPassword
+                            .eq(body.password))
+                }.count() != 0) {
+                    ctx.status(200)
+                    return@transaction ;
+                }
+
+                ctx.status(404)
+
+            }
+
         }
     }
 }

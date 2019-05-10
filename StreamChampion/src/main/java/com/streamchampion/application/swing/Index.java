@@ -12,14 +12,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import com.google.gson.Gson;
-
 public class Index extends Components {
 
     private ImageIcon icon = new ImageIcon("src/main/resources/icons/icon.jpeg");
@@ -64,7 +56,7 @@ public class Index extends Components {
         boolean test = true;
 
         SystemInformation systemInformation = new SystemInformation();
-        InsertOshi insertOshi = new InsertOshi();
+//        InsertOshi insertOshi = new InsertOshi();
 
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
@@ -79,11 +71,7 @@ public class Index extends Components {
                 System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-                String params = "details={\"memoryRam\":\" " +
-                        systemInformation.getRam().getMemoryUseInPercentage() + "\",\"tempCpu\":\" " +
-                        systemInformation.getCpu().getCPUTemperature() + "\"} ";
-
-                URL url = new URL("http://localhost:7000/test");
+                URL url = new URL("http://localhost:7000/oshi");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setRequestProperty("Content-Type", "application/json; utf-8");

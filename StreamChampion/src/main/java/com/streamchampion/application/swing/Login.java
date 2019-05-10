@@ -3,6 +3,11 @@ package com.streamchampion.application.swing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,28 +41,28 @@ public class Login extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        TextFieldNome = new JTextFieldHint(new JTextField(), "user-icon", "Login");
+        mainPanel = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        TextFieldName = new JTextFieldHint(new JTextField(), "user-icon", "Login");
         ;
         TextFieldPassword = new JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
         ;
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        forgotPassword = new javax.swing.JLabel();
+        backgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(new java.awt.Dimension(530, 330));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        mainPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel2MouseDragged(evt);
             }
         });
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
             }
@@ -66,102 +71,75 @@ public class Login extends JFrame {
                 jPanel2MousePressed(evt);
             }
         });
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("StreamChampion");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 121, 165, -1));
+        title.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setText("StreamChampion");
+        mainPanel.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 121, 165, -1));
 
-        TextFieldNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        TextFieldNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldNomeActionPerformed(evt);
-            }
-        });
-        jPanel2.add(TextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 22, 150, 30));
+        TextFieldName.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        mainPanel.add(TextFieldName, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 22, 150, 30));
 
         TextFieldPassword.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        TextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldPasswordActionPerformed(evt);
-            }
-        });
-        jPanel2.add(TextFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 22, 150, 30));
+        mainPanel.add(TextFieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 22, 150, 30));
 
-        jButton1.setBackground(new java.awt.Color(58, 65, 84));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Entrar");
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogin.setBackground(new java.awt.Color(58, 65, 84));
+        btnLogin.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Entrar");
+        btnLogin.setBorderPainted(false);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setFocusPainted(false);
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                btnLoginMouseEntered(evt);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                btnLoginMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 120, 30));
+        mainPanel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 120, 30));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Sair");
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(255, 51, 51));
+        btnLogout.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Sair");
+        btnLogout.setBorderPainted(false);
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.setFocusPainted(false);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 120, 30));
+        mainPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 120, 30));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("Esqueci minha senha");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
+        forgotPassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        forgotPassword.setForeground(new java.awt.Color(255, 0, 0));
+        forgotPassword.setText("Esqueci minha senha");
+        mainPanel.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("src/main/resources/icons/header-bg.jpg")); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 330));
+        backgroundImage.setIcon(new javax.swing.ImageIcon("src/main/resources/icons/header-bg.jpg")); // NOI18N
+        mainPanel.add(backgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 330));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 330));
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 330));
 
         pack();
     }// </editor-fold>
 
-    private void TextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {
+        btnLogin.setBackground(new Color(84, 95, 124));
     }
 
-    private void TextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {
-        jButton1.setBackground(new Color(84, 95, 124));
-    }
-
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {
-        jButton1.setBackground(new Color(58, 65, 84));
+    private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {
+        btnLogin.setBackground(new Color(58, 65, 84));
     }
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {
@@ -178,9 +156,41 @@ public class Login extends JFrame {
         this.setLocation(p.x = evt.getX() - point.y, p.y = evt.getY() - point.y);// TODO add your handling code here:
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
         Point p = this.getLocation();
         Login login = this;
+
+        System.out.println(login.TextFieldName.getText() + login.TextFieldPassword.getText());
+
+        try {
+            URL url = new URL("http://localhost:7000/login");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+            String jsonInputString = "{\"login\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
+                    login.TextFieldPassword.getText() + "\"}";
+
+            try (OutputStream os = con.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                int responseCode = con.getResponseCode();
+                System.out.println(responseCode + " " + response.toString());
+            }
+        }catch (Exception e){
+        }
+
+
         new Thread() {
             @Override
             public void run() {
@@ -201,21 +211,10 @@ public class Login extends JFrame {
 
     }
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -249,14 +248,14 @@ public class Login extends JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JTextField TextFieldNome;
+    private javax.swing.JTextField TextFieldName;
     private javax.swing.JTextField TextFieldPassword;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel title; //substituir pelo png
+    private javax.swing.JLabel backgroundImage;
+    private javax.swing.JLabel forgotPassword;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration
 }
 

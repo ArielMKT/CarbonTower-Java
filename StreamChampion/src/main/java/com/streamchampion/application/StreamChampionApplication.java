@@ -32,7 +32,7 @@ public class StreamChampionApplication {
 
         /* Create and display the form */
 
-        new Connection().getConnection();
+//        new Connection().getConnection();
         Index index  = new Index();
         index.setVisible(true);
         index.setInformation();

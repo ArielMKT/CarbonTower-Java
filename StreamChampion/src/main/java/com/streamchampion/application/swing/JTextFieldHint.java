@@ -7,6 +7,8 @@ package com.streamchampion.application.swing;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -101,6 +103,17 @@ public class JTextFieldHint extends JTextField implements FocusListener {
     @Override
     public void focusLost(FocusEvent arg0) {
         this.repaint();
+    }
+
+    @Override
+    public String getText(){
+        Document doc = getDocument();
+
+        try{
+            return doc.getText(0, doc.getLength());
+        }catch (BadLocationException e){
+            return null;
+        }
     }
 
 }
