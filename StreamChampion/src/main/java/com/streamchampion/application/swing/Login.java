@@ -1,6 +1,8 @@
 package com.streamchampion.application.swing;
 
 
+import com.streamchampion.resources.httpRequest.PostHttpRequest;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -44,9 +46,7 @@ public class Login extends JFrame {
         mainPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         TextFieldName = new JTextFieldHint(new JTextField(), "user-icon", "Login");
-        ;
         TextFieldPassword = new JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
-        ;
         btnLogin = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         forgotPassword = new javax.swing.JLabel();
@@ -163,31 +163,14 @@ public class Login extends JFrame {
         System.out.println(login.TextFieldName.getText() + login.TextFieldPassword.getText());
 
         try {
-            URL url = new URL("http://localhost:7000/login");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json; utf-8");
-            con.setRequestProperty("Accept", "application/json");
-            con.setDoOutput(true);
+            String url = "http://localhost:7000/login";
             String jsonInputString = "{\"login\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
                     login.TextFieldPassword.getText() + "\"}";
 
-            try (OutputStream os = con.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
+            int respondeCode = new PostHttpRequest().postHttpRequest(jsonInputString, url);
 
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine = null;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
-                }
-                int responseCode = con.getResponseCode();
-                System.out.println(responseCode + " " + response.toString());
-            }
         }catch (Exception e){
+            System.out.println(e);
         }
 
 
@@ -215,37 +198,37 @@ public class Login extends JFrame {
         System.exit(0);
     }
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Login().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify
     private javax.swing.JTextField TextFieldName;

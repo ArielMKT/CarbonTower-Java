@@ -21,7 +21,7 @@ object Connection{
             server = "servercarbontower.database.windows.net",
             databaseName = "carbontower",
             databaseUser = "tower",
-            databasePassword = "!Carbon6"
+            databasePassword = "your_password"
         )
     }
 

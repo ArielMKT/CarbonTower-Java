@@ -16,14 +16,14 @@ object TesteHttp{
             val body = ctx.body<Oshi>()
 
             println(body.memoryRam)
-
-            transaction {
-                T_MACHINE_METRIC.insert {
-                    it[useRam] = body.memoryRam
-                    it[tempCPU] = body.tempCpu
-                }
-            }
-            ctx.status(200).result(" OK")
+            println(body.tempCpu)
+//            transaction {
+//                T_MACHINE_METRIC.insert {
+//                    it[useRam] = body.memoryRam
+//                    it[tempCPU] = body.tempCpu
+//                }
+//            }
+            ctx.status(200).json("Cadastro realizado com sucesso")
         }
         javalin.post("login"){ctx ->
 
@@ -37,12 +37,12 @@ object TesteHttp{
                         .eq(body.login)
                         .and(T_USER.userPassword
                             .eq(body.password))
-                }.count() != 0) {
-                    ctx.status(200)
-                    return@transaction ;
+                }.count() == 0) {
+                    ctx.status(401).json("Usuário não autorizado!")
+                    return@transaction
                 }
 
-                ctx.status(404)
+                ctx.status(200).json("Logado com sucesso!")
 
             }
 

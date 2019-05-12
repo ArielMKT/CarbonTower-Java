@@ -1,6 +1,7 @@
 package com.streamchampion.application;
 
 import com.streamchampion.application.swing.Index;
+import com.streamchampion.application.swing.Login;
 import com.streamchampion.resources.database.Connection;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class StreamChampionApplication {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -33,9 +34,12 @@ public class StreamChampionApplication {
         /* Create and display the form */
 
 //        new Connection().getConnection();
-        Index index  = new Index();
-        index.setVisible(true);
-        index.setInformation();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
     }
 
 }

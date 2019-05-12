@@ -2,6 +2,7 @@ package com.streamchampion.application.swing;
 
 import com.streamchampion.application.oshi.SystemInformation;
 import com.streamchampion.resources.database.InsertOshi;
+import com.streamchampion.resources.httpRequest.PostHttpRequest;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -17,6 +18,21 @@ public class Index extends Components {
     private ImageIcon icon = new ImageIcon("src/main/resources/icons/icon.jpeg");
 
     public Index() {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (
+            ClassNotFoundException |
+                InstantiationException |
+                IllegalAccessException |
+                UnsupportedLookAndFeelException ex
+        ) {
+            java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
@@ -71,41 +87,16 @@ public class Index extends Components {
                 System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-                URL url = new URL("http://localhost:7000/oshi");
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("POST");
-                con.setRequestProperty("Content-Type", "application/json; utf-8");
-                con.setRequestProperty("Accept", "application/json");
-                con.setDoOutput(true);
                 String jsonInputString = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
-                        + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+                    + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+                String url = "http://localhost:7000/oshi";
 
-                try (OutputStream os = con.getOutputStream()) {
-                    byte[] input = jsonInputString.getBytes("utf-8");
-                    os.write(input, 0, input.length);
-                }
-
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(con.getInputStream(), "utf-8"))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine = null;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                    int responseCode = con.getResponseCode();
-                    System.out.println(responseCode + " " + response.toString());
-                }
-
-                //insertOshi.insertOshi(
-                //        systemInformation.getRam().getMemoryUseInPercentage(),
-                //        systemInformation.getCpu().getFansSpeed(),
-                //        systemInformation.getCpu().getCPUTemperature()
-                //);
+                new PostHttpRequest().postHttpRequest(jsonInputString, url);
 
                 Thread.sleep(5000);
             } while (test);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }
 
