@@ -17,12 +17,12 @@ object TesteHttp{
 
             println(body.memoryRam)
             println(body.tempCpu)
-//            transaction {
-//                T_MACHINE_METRIC.insert {
-//                    it[useRam] = body.memoryRam
-//                    it[tempCPU] = body.tempCpu
-//                }
-//            }
+            transaction {
+                T_MACHINE_METRIC.insert {
+                    it[useRam] = body.memoryRam
+                    it[tempCPU] = body.tempCpu
+                }
+            }
             ctx.status(200).json("Cadastro realizado com sucesso")
         }
         javalin.post("login"){ctx ->

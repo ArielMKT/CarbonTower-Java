@@ -5,11 +5,6 @@ import com.streamchampion.resources.httpRequest.PostHttpRequest;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +20,8 @@ public class Login extends JFrame {
     public Login() {
         initComponents();
         centralizarComponente();
+        index = new Index();
+        index.setVisible(false);
     }
 
     public void centralizarComponente() {
@@ -169,6 +166,11 @@ public class Login extends JFrame {
 
             int respondeCode = new PostHttpRequest().postHttpRequest(jsonInputString, url);
 
+            if(respondeCode == 200){
+                index.setVisible(true);
+                index.setInformation();
+            }
+
         }catch (Exception e){
             System.out.println(e);
         }
@@ -239,6 +241,7 @@ public class Login extends JFrame {
     private javax.swing.JLabel backgroundImage;
     private javax.swing.JLabel forgotPassword;
     private javax.swing.JPanel mainPanel;
+    private Index index;
     // End of variables declaration
 }
 
