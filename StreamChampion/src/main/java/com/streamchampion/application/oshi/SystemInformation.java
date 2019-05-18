@@ -18,6 +18,7 @@ public class SystemInformation {
     private Processes processes;
     private Ram ram;
     private UsbDevices usbDevices;
+    private Gpu gpu;
 
     public String getCpuUsage(){
         double us = hardwareAbstractionLayer.getProcessor().getSystemCpuLoad();
@@ -36,6 +37,8 @@ public class SystemInformation {
         ram = new Ram(hardwareAbstractionLayer.getMemory());
         usbDevices = new UsbDevices(hardwareAbstractionLayer);
     }
+
+    public Gpu getGpu() { return gpu; }
 
     public ComputerSystem getComputerSystem() {
         return computerSystem;

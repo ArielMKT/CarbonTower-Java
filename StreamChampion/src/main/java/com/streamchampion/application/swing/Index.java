@@ -86,6 +86,8 @@ public class Index extends Components {
                         systemInformation.getRam().getTotalMemory());
                 System.out.println(systemInformation.getCpu().getFansSpeed());
                 lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
+                lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
+                lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
 
                 String jsonInputString = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
                     + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
