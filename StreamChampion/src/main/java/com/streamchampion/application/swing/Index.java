@@ -9,13 +9,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class Index extends Components {
 
     private ImageIcon icon = new ImageIcon("src/main/resources/icons/icon.jpeg");
+    private SystemInformation systemInformation;
 
     public Index() {
         try {
@@ -34,6 +32,7 @@ public class Index extends Components {
             java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         initComponents();
+        systemInformation = new SystemInformation();
     }
 
     //    @SuppressWarnings("unchecked")
@@ -70,36 +69,33 @@ public class Index extends Components {
 
     public void setInformation() {
         boolean test = true;
-
-        SystemInformation systemInformation = new SystemInformation();
 //        InsertOshi insertOshi = new InsertOshi();
 
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
-        try {
-            do {
-                lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
-                lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
-//                lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryAvailable());
-                lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
-                        + "% / " +
-                        systemInformation.getRam().getTotalMemory());
-                System.out.println(systemInformation.getCpu().getFansSpeed());
-                lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
-                lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
-                lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
+        new Thread(() -> {
+            try {
+                while(test) {
+                    System.out.println("thread é nois");
+                    lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
+                    lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
+                    lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
+                            + "% / " +
+                            systemInformation.getRam().getTotalMemory());
+                    System.out.println(systemInformation.getCpu().getFansSpeed());
+                    lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-                String jsonInputString = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
-                    + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
-                String url = "http://localhost:7000/oshi";
+                    final String jsonInputString2 = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
+                            + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+                    final String url2 = "http://localhost:7000/oshi";
 
-                new PostHttpRequest().postHttpRequest(jsonInputString, url);
-
-                Thread.sleep(5000);
-            } while (test);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+                    new PostHttpRequest().postHttpRequest(jsonInputString2, url2);
+                    Thread.sleep(5000);
+                }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }).start();
     }
 
 }
