@@ -85,10 +85,10 @@ public class Index extends Components {
                     System.out.println(systemInformation.getCpu().getFansSpeed());
                     lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-//                    lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
+                    lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
 //                    System.out.println(systemInformation.getGpu().getTemperatureGPU());
 
-//                    lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
+                    lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
 //                    System.out.println(systemInformation.getGpu().getGPUCoreValue());
 
                     final String jsonInputString =

@@ -36,6 +36,7 @@ public class SystemInformation {
         processes = new Processes(operatingSystem, hardwareAbstractionLayer.getMemory());
         ram = new Ram(hardwareAbstractionLayer.getMemory());
         usbDevices = new UsbDevices(hardwareAbstractionLayer);
+        gpu = new Gpu();
     }
 
     public Gpu getGpu() { return gpu; }
