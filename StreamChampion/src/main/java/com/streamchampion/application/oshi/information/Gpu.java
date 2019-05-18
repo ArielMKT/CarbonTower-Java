@@ -8,6 +8,10 @@ import java.util.List;
 
 public class Gpu {
 
+    public Gpu(){
+
+    }
+
     public String getTemperatureGPU() {
         List<com.profesorfalken.jsensors.model.components.Gpu> gpuList = JSensors.get.components().gpus;
 
@@ -51,7 +55,7 @@ public class Gpu {
 
                 List<Load> loads = gpu.sensors.loads;
                 for (final Load load : loads) {
-                    if(load.name == "Load GPU Core Value")
+                    if(load.name.equals("Load GPU Core Value"))
                         return String.valueOf(load.value);
                 }
             }

@@ -85,11 +85,18 @@ public class Index extends Components {
                     System.out.println(systemInformation.getCpu().getFansSpeed());
                     lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
-                    final String jsonInputString2 = "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
-                            + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
-                    final String url2 = "http://localhost:7000/oshi";
+//                    lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
+//                    System.out.println(systemInformation.getGpu().getTemperatureGPU());
 
-                    new PostHttpRequest().postHttpRequest(jsonInputString2, url2);
+//                    lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
+//                    System.out.println(systemInformation.getGpu().getGPUCoreValue());
+
+                    final String jsonInputString =
+                        "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
+                            + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+                    final String url = "http://localhost:7000/oshi";
+
+                    new PostHttpRequest().postHttpRequest(jsonInputString, url);
                     Thread.sleep(5000);
                 }
             }catch(Exception e){
