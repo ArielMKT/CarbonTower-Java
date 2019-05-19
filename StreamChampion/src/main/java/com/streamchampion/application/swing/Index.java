@@ -82,7 +82,7 @@ public class Index extends Components {
                     lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
                             + "% / " +
                             systemInformation.getRam().getTotalMemory());
-                    System.out.println(systemInformation.getCpu().getFansSpeed());
+//                    System.out.println(systemInformation.getCpu().getFansSpeed());
                     lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
 
                     lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
@@ -93,7 +93,12 @@ public class Index extends Components {
 
                     final String jsonInputString =
                         "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
-                            + "\", \"tempCpu\": \" " + systemInformation.getCpu().getCPUTemperature() + "\"}";
+                            + "\", \"tempCpu\": \"" + systemInformation.getCpu().getCPUTemperature()
+//                            + "\", \"cpuUse\": \" " + systemInformation.getCpuUsage()
+//                            + "\", \"totalRam\": \" " + systemInformation.getRam().getTotalMemory()
+                            + "\", \"tempGpu\": \"" + systemInformation.getGpu().getTemperatureGPU()
+                            + "\", \"useGpu\": \"" + systemInformation.getGpu().getGPUCoreValue()
+                            + "\"}";
                     final String url = "http://localhost:7000/oshi";
 
                     new PostHttpRequest().postHttpRequest(jsonInputString, url);

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.streamchampion.domain.Encrypt;
 
 /**
  * @author Igor
@@ -158,11 +159,12 @@ public class Login extends JFrame {
         Login login = this;
 
         System.out.println(login.TextFieldName.getText() + login.TextFieldPassword.getText());
+        final String password = new Encrypt().getSHA512(login.TextFieldPassword.getText());
 
         try {
             String url = "http://localhost:7000/login";
             String jsonInputString = "{\"login\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
-                    login.TextFieldPassword.getText() + "\"}";
+                    password + "\"}";
 
             int respondeCode = new PostHttpRequest().postHttpRequest(jsonInputString, url);
 

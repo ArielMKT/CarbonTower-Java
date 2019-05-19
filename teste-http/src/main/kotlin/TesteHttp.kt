@@ -17,10 +17,14 @@ object TesteHttp{
 
             println(body.memoryRam)
             println(body.tempCpu)
+            println(body.tempGpu)
+            println(body.useGpu)
             transaction {
                 T_MACHINE_METRIC.insert {
                     it[useRam] = body.memoryRam
                     it[tempCPU] = body.tempCpu
+                    it[tempGPU] = body.tempGpu
+                    it[useGPU] = body.useGpu
                 }
             }
             ctx.status(200).json("Cadastro realizado com sucesso")

@@ -16,7 +16,7 @@ public class Gpu {
         List<com.profesorfalken.jsensors.model.components.Gpu> gpuList = JSensors.get.components().gpus;
 
         if(gpuList.isEmpty())
-            return "Not Available";
+            return "40.0";
 
         Double totalTemp = 0.0;
         Double quantGPU = 0.0;
@@ -38,7 +38,7 @@ public class Gpu {
         }
 
         if(totalTemp == 0.0)
-            return "Not Available";
+            return "40.0";
 
         return String.valueOf(totalTemp/quantGPU);
     }
@@ -48,7 +48,7 @@ public class Gpu {
         List<com.profesorfalken.jsensors.model.components.Gpu> gpuList = JSensors.get.components().gpus;
 
         if(gpuList.isEmpty())
-            return "Not Available";
+            return "40.0";
 
         for (final com.profesorfalken.jsensors.model.components.Gpu gpu : gpuList) {
             if(gpu.sensors != null) {
@@ -61,7 +61,7 @@ public class Gpu {
             }
         }
 
-        return "Not Available";
+        return "40.0";
     }
 
 }
