@@ -15,7 +15,7 @@ import java.awt.event.FocusListener;
 
 /**
  *
- * @author otavi
+ * @author Igor
  */
 public class JTextFieldHint extends JTextField implements FocusListener {
 
