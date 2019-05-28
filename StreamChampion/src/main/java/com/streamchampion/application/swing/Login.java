@@ -1,10 +1,12 @@
 package com.streamchampion.application.swing;
 
 
+import com.streamchampion.domain.Loggable;
 import com.streamchampion.resources.httpRequest.PostHttpRequest;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.streamchampion.domain.Encrypt;
@@ -44,7 +46,7 @@ public class Login extends JFrame {
         mainPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         TextFieldName = new JTextFieldHint(new JTextField(), "user-icon", "Login");
-        TextFieldPassword = new JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
+        TextFieldPassword = new JPassWordFieldHint(new JPasswordField(), "padlock", "Password");
         btnLogin = new javax.swing.JButton();
         forgotPassword = new javax.swing.JLabel();
         register = new javax.swing.JLabel(); //5
@@ -108,7 +110,10 @@ public class Login extends JFrame {
         });
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                try {
+                    btnLoginActionPerformed(evt);
+                } catch (IOException e) {
+                }
             }
         });
         mainPanel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 230, 30));
@@ -155,7 +160,7 @@ public class Login extends JFrame {
         this.setLocation(p.x = evt.getX() - point.y, p.y = evt.getY() - point.y);// TODO add your handling code here:
     }
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Point p = this.getLocation();
         Login login = this;
 
@@ -175,6 +180,7 @@ public class Login extends JFrame {
             }
 
         }catch (Exception e){
+            new Loggable().createLogs(e.toString());
             System.out.println(e);
         }
 
@@ -241,7 +247,6 @@ public class Login extends JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
     private javax.swing.JLabel title; //substituir pelo png
-    private javax.swing.JLabel backgroundImage;
     private javax.swing.JLabel forgotPassword;
     private javax.swing.JPanel mainPanel;
     private Index index;

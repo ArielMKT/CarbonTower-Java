@@ -40,6 +40,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.openbase/jeoparnaire
     compile group: 'org.openbase', name: 'jeoparnaire', version: '1.0.2'
 
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
 
     //https:\/\/www.youtube.com\/watch?v=__QxqLGVDbg
 
