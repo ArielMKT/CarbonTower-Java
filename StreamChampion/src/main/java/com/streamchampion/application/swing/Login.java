@@ -168,7 +168,7 @@ public class Login extends JFrame {
         final String password = new Encrypt().getSHA512(login.TextFieldPassword.getText());
 
         try {
-            String url = "http://35.199.74.137:8000/login/java";
+            String url = "http://35.199.74.137:7000/login/java";
             String jsonInputString = "{\"persondata\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
                 login.TextFieldPassword.getText() + "\"}";
 
@@ -178,6 +178,9 @@ public class Login extends JFrame {
                 index.setVisible(true);
                 index.setInformation();
             }
+
+            String urlMachine = "http://35.199.74.137:7000/machine/" + login.TextFieldName.getText();
+            new PostHttpRequest().postHttpRequest(index.getMachine(), urlMachine);
 
         }catch (Exception e){
             new Loggable().createLogs(e.toString());

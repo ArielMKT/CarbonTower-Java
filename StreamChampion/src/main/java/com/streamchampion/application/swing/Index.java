@@ -9,6 +9,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 
 public class Index extends Components {
 
@@ -108,6 +109,16 @@ public class Index extends Components {
                 System.out.println(e);
             }
         }).start();
+    }
+
+    public String getMachine() throws Exception{
+        InetAddress ip = InetAddress.getLocalHost();
+
+        return "{\"idMachine\": \"" + ip.getHostName() +"\", " +
+                "\"motherBoard\": \"" + systemInformation.getComputerSystem().getManufacturerBaseboard() + "\", " +
+                "\"os\": \"" + systemInformation.getComputerSystem().getOperatingSystemToString() + "\", " +
+                "\"manufacturer\": \"" + systemInformation.getComputerSystem().getManufacturerComputerSystem() + "\", " +
+                "\"model\": \"" + systemInformation.getComputerSystem().getModelComputerSystem() + "\"}";
     }
 
 }
