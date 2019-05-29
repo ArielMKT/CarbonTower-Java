@@ -168,9 +168,9 @@ public class Login extends JFrame {
         final String password = new Encrypt().getSHA512(login.TextFieldPassword.getText());
 
         try {
-            String url = "http://localhost:7000/login";
-            String jsonInputString = "{\"login\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
-                    password + "\"}";
+            String url = "http://35.199.74.137:7000/login/java";
+            String jsonInputString = "{\"persondata\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
+                    login.TextFieldPassword.getText() + "\"}";
 
             int respondeCode = new PostHttpRequest().postHttpRequest(jsonInputString, url);
 
