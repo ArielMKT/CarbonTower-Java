@@ -23,7 +23,7 @@ public class SystemInformation {
     public String getCpuUsage(){
         double us = hardwareAbstractionLayer.getProcessor().getSystemCpuLoad();
         DecimalFormat deci = new DecimalFormat("0");
-        return deci.format(us * 100) + "%";
+        return deci.format(us * 100);
     }
 
     public SystemInformation() {

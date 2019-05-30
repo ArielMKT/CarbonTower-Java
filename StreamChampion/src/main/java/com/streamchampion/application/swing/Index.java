@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Index extends Components {
 
@@ -72,53 +75,61 @@ public class Index extends Components {
         boolean test = true;
 //        InsertOshi insertOshi = new InsertOshi();
 
+        String strDateFormat = "yyyy-MM-dd";
+        String strHourFormat = "HH:mm:ss";
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
         new Thread(() -> {
-            try {
-                while(test) {
+            while(test) {
+                try {
                     System.out.println("thread é nois");
                     lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
-                    lblUseProcessorOshi.setText(systemInformation.getCpuUsage());
+                    lblUseProcessorOshi.setText(systemInformation.getCpuUsage() + "%");
                     lblMemoryRamOshi.setText(systemInformation.getRam().getMemoryUseInPercentage()
                             + "% / " +
                             systemInformation.getRam().getTotalMemory());
-//                    System.out.println(systemInformation.getCpu().getFansSpeed());
                     lblFanRpmOshi.setText(systemInformation.getCpu().getFansSpeed());
-
                     lblTempGpuJSensor.setText(systemInformation.getGpu().getTemperatureGPU());
-//                    System.out.println(systemInformation.getGpu().getTemperatureGPU());
-
                     lblUseGpuJSensor.setText(systemInformation.getGpu().getGPUCoreValue());
-//                    System.out.println(systemInformation.getGpu().getGPUCoreValue());
+
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+                    DateFormat hourFormat = new SimpleDateFormat(strHourFormat);
 
                     final String jsonInputString =
-                        "{\"memoryRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage()
-                            + "\", \"tempCpu\": \"" + systemInformation.getCpu().getCPUTemperature()
-//                            + "\", \"cpuUse\": \" " + systemInformation.getCpuUsage()
-//                            + "\", \"totalRam\": \" " + systemInformation.getRam().getTotalMemory()
-                            + "\", \"tempGpu\": \"" + systemInformation.getGpu().getTemperatureGPU()
-                            + "\", \"useGpu\": \"" + systemInformation.getGpu().getGPUCoreValue()
-                            + "\"}";
-                    final String url = "http://localhost:7000/oshi";
+                        "{\"useRam\": \"" + systemInformation.getRam().getMemoryUseInPercentage() + "\"," +
+                        "\"tempGPU\": \"" + systemInformation.getGpu().getTemperatureGPU() + "\"," +
+                        "\"useGPU\": \" " + systemInformation.getGpu().getGPUCoreValue() + "\"," +
+                        "\"useCPU\": \" " + systemInformation.getCpuUsage() + "\"," +
+                        "\"useDisc\": \"00\"," +
+                        "\"rpmCooler\": \"0\"," +
+                        "\"tempCPU\": \" " + systemInformation.getCpu().getCPUTemperature()+ "\"," +
+                        "\"usbDevice\": \"TODO\"," +
+                        "\"metricDate\": \" " + dateFormat.format(date) + "\"," +
+                        "\"metricTime\": \"" + hourFormat.format(date) + "\"}";
+                    final String url = "http://35.199.74.137:7000/machine/metric/" + getIdMachine();
 
                     new PostHttpRequest().postHttpRequest(jsonInputString, url);
                     Thread.sleep(5000);
+                }catch(Exception e){
+                    System.out.println(e);
                 }
-            }catch(Exception e){
-                System.out.println(e);
             }
         }).start();
     }
 
-    public String getMachine() throws Exception{
-        InetAddress ip = InetAddress.getLocalHost();
-
-        return "{\"idMachine\": \"" + ip.getHostName() +"\", " +
+    protected String getMachine() throws Exception{
+        return "{\"idMachine\": \"" + getIdMachine() +"\", " +
                 "\"motherBoard\": \"" + systemInformation.getComputerSystem().getManufacturerBaseboard() + "\", " +
                 "\"os\": \"" + systemInformation.getComputerSystem().getOperatingSystemToString() + "\", " +
                 "\"manufacturer\": \"" + systemInformation.getComputerSystem().getManufacturerComputerSystem() + "\", " +
                 "\"model\": \"" + systemInformation.getComputerSystem().getModelComputerSystem() + "\"}";
+    }
+
+    private String getIdMachine() throws Exception{
+        InetAddress ip = InetAddress.getLocalHost();
+
+        return ip.getHostName();
     }
 
 }
