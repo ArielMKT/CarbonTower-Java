@@ -14,6 +14,7 @@ public class Encrypt {
             digest.update(input.getBytes("utf8"));
             toReturn = String.format("%0128x", new BigInteger(1, digest.digest()));
         } catch (Exception e) {
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             e.printStackTrace();
         }
 

@@ -5,6 +5,8 @@
  */
 package com.streamchampion.application.swing;
 
+import com.streamchampion.domain.Loggable;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.BadLocationException;
@@ -112,6 +114,7 @@ public class JTextFieldHint extends JTextField implements FocusListener {
         try{
             return doc.getText(0, doc.getLength());
         }catch (BadLocationException e){
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             return null;
         }
     }

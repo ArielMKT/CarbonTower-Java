@@ -2,6 +2,7 @@ package com.streamchampion.application;
 
 import com.streamchampion.application.swing.Index;
 import com.streamchampion.application.swing.Login;
+import com.streamchampion.domain.Loggable;
 import com.streamchampion.resources.database.Connection;
 
 import javax.swing.*;
@@ -25,9 +26,10 @@ public class StreamChampionApplication {
             ClassNotFoundException |
             InstantiationException |
             IllegalAccessException |
-            UnsupportedLookAndFeelException ex
+            UnsupportedLookAndFeelException e
         ) {
-            java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
+            java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
         }
         //</editor-fold>
 

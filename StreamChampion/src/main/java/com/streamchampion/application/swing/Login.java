@@ -113,6 +113,7 @@ public class Login extends JFrame {
                 try {
                     btnLoginActionPerformed(evt);
                 } catch (IOException e) {
+                    new Loggable().createLogs(e.toString(), "Logs/", "Log");
                 }
             }
         });
@@ -180,7 +181,7 @@ public class Login extends JFrame {
             }
 
         }catch (Exception e){
-            new Loggable().createLogs(e.toString());
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             System.out.println(e);
         }
 
@@ -196,8 +197,9 @@ public class Login extends JFrame {
                         sleep(20);
                     }
                     login.setLocation(p.x, p.y);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException e) {
+                    new Loggable().createLogs(e.toString(), "Logs/", "Log");
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
                 }
             }
         }.start();

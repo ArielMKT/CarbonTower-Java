@@ -1,5 +1,7 @@
 package com.streamchampion.resources.database;
 
+import com.streamchampion.domain.Loggable;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -22,6 +24,7 @@ public class Connection {
             return connection;
 
         }catch(SQLException e){
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             System.out.println(e);
         }
 

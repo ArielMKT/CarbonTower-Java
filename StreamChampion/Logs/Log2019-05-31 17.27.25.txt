@@ -1,0 +1,1 @@
+INFO java.io.IOException: Server returned HTTP response code: 406 for URL: http://35.199.74.137:7000/login/java
