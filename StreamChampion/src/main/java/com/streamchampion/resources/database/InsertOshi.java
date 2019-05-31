@@ -1,5 +1,7 @@
 package com.streamchampion.resources.database;
 
+import com.streamchampion.domain.Loggable;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,6 +23,7 @@ public class InsertOshi {
 
             statement.close();
         }catch(SQLException e){
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             System.out.println(e);
         }
     }

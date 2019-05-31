@@ -1,6 +1,7 @@
 package com.streamchampion.application.swing;
 
 import com.streamchampion.application.oshi.SystemInformation;
+import com.streamchampion.domain.Loggable;
 import com.streamchampion.resources.database.InsertOshi;
 import com.streamchampion.resources.httpRequest.PostHttpRequest;
 
@@ -31,9 +32,10 @@ public class Index extends Components {
             ClassNotFoundException |
                 InstantiationException |
                 IllegalAccessException |
-                UnsupportedLookAndFeelException ex
+                UnsupportedLookAndFeelException e
         ) {
-            java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
+            java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
         }
         initComponents();
         systemInformation = new SystemInformation();
@@ -80,8 +82,8 @@ public class Index extends Components {
         lblOsOshi.setText(systemInformation.getComputerSystem().getOperatingSystemToString());
 
         new Thread(() -> {
-            while(test) {
-                try {
+            try {
+                while(test) {
                     System.out.println("thread é nois");
                     lblTempProcessorOshi.setText(systemInformation.getCpu().getCPUTemperature());
                     lblUseProcessorOshi.setText(systemInformation.getCpuUsage() + "%");
@@ -111,9 +113,10 @@ public class Index extends Components {
 
                     new PostHttpRequest().postHttpRequest(jsonInputString, url);
                     Thread.sleep(5000);
-                }catch(Exception e){
-                    System.out.println(e);
                 }
+            }catch(Exception e){
+                new Loggable().createLogs(e.toString(), "Logs/", "Log");
+                System.out.println(e);
             }
         }).start();
     }

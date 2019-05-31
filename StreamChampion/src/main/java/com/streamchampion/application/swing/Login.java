@@ -113,6 +113,7 @@ public class Login extends JFrame {
                 try {
                     btnLoginActionPerformed(evt);
                 } catch (IOException e) {
+                    new Loggable().createLogs(e.toString(), "Logs/", "Log");
                 }
             }
         });
@@ -169,9 +170,9 @@ public class Login extends JFrame {
 
         try {
             String url = "http://35.199.74.137:7000/login/java";
-            String jsonInputString = "{\"persondata\": \"" + login.TextFieldName.getText()+"\", \"password\": \"" +
-                login.TextFieldPassword.getText() + "\"}";
-
+            String jsonInputString =
+                    "{\"persondata\": \"" + login.TextFieldName.getText()+"\", " +
+                    "\"password\": \"" + login.TextFieldPassword.getText() + "\"}";
             int respondeCode = new PostHttpRequest().postHttpRequest(jsonInputString, url);
 
             if(respondeCode == 200){
@@ -183,7 +184,7 @@ public class Login extends JFrame {
             new PostHttpRequest().postHttpRequest(index.getMachine(), urlMachine);
 
         }catch (Exception e){
-            new Loggable().createLogs(e.toString());
+            new Loggable().createLogs(e.toString(), "Logs/", "Log");
             System.out.println(e);
         }
 
@@ -199,8 +200,9 @@ public class Login extends JFrame {
                         sleep(20);
                     }
                     login.setLocation(p.x, p.y);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException e) {
+                    new Loggable().createLogs(e.toString(), "Logs/", "Log");
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, e);
                 }
             }
         }.start();
