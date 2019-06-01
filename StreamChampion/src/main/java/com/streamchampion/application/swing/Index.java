@@ -47,12 +47,15 @@ public class Index extends Components {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("StreamChampion");
-        getContentPane().setBackground(new java.awt.Color(225, 225, 225));
+        getContentPane().setBackground(new java.awt.Color(36, 41, 46));
         setIconImage(icon.getImage());
         setResizable(false);
 
         btnLogout = new javax.swing.JButton();
-        btnLogout.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 14)); // NOI18N
+        btnLogout.setBackground(new java.awt.Color(245, 71, 71));
+        btnLogout.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 11)); // NOI18N
         btnLogout.setText("LOGOUT");
         btnLogout.setBorder(new LineBorder(Color.white, 8, true));
         btnLogout.setBorderPainted(false);

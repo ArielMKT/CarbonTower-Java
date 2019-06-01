@@ -3,6 +3,7 @@ package com.streamchampion.application.swing;
 import javax.swing.*;
 import java.awt.*;
 
+
 class Components extends JFrame {
 
     JButton btnLogout;
@@ -50,7 +51,7 @@ class Components extends JFrame {
         lblUseGpu.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblUseGpu.setText("Uso da placa de vídeo: ");
 
-        panelTexts.setBackground(new java.awt.Color(225, 225, 225));
+        panelTexts.setBackground(new java.awt.Color(36, 41, 46));
         javax.swing.GroupLayout panelTextsLayout = new javax.swing.GroupLayout(panelTexts);
         panelTexts.setLayout(panelTextsLayout);
         panelTextsLayout.setHorizontalGroup(
@@ -142,7 +143,7 @@ class Components extends JFrame {
         lblUseGpuJSensor = new JLabel();
         lblOsOshi = new JLabel();
 
-        panelResultTexts.setBackground(new java.awt.Color(225, 225, 225));
+        panelResultTexts.setBackground(new java.awt.Color(36, 41, 46));
         javax.swing.GroupLayout panelResultTextsLayout = new javax.swing.GroupLayout(panelResultTexts);
         panelResultTexts.setLayout(panelResultTextsLayout);
         panelResultTextsLayout.setHorizontalGroup(
