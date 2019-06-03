@@ -253,24 +253,37 @@ class Components extends JFrame {
 
         lblFanRpmOshi.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblFanRpmOshi.setText("xxxx");
+        lblFanRpmOshi.setForeground(new java.awt.Color(255, 255, 255));
+        lblFanRpm.setForeground(new java.awt.Color(255, 255, 255));
 
         lblUseProcessorOshi.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblUseProcessorOshi.setText("xx%");
+        lblUseProcessorOshi.setForeground(new java.awt.Color(255, 255, 255));
+        lblUseProcessor.setForeground(new java.awt.Color(255, 255, 255));
 
         lblTempProcessorOshi.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblTempProcessorOshi.setText("x.x");
+        lblTempProcessorOshi.setForeground(new java.awt.Color(255, 255, 255));
+        lblTempProcessor.setForeground(new java.awt.Color(255, 255, 255));
 
         lblMemoryRamOshi.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblMemoryRamOshi.setText("xx% - xx");
+        lblMemoryRamOshi.setForeground(new java.awt.Color(255, 255, 255));
+        lblMemoryRam.setForeground(new java.awt.Color(255, 255, 255));
 
         lblTempGpuJSensor.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblTempGpuJSensor.setText("x.x");
+        lblTempGpuJSensor.setForeground(new java.awt.Color(255, 255, 255));
+        lblTempGpu.setForeground(new java.awt.Color(255, 255, 255));
 
         lblUseGpuJSensor.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 16)); // NOI18N
         lblUseGpuJSensor.setText("xx%");
+        lblUseGpuJSensor.setForeground(new java.awt.Color(255, 255, 255));
+        lblUseGpu.setForeground(new java.awt.Color(255, 255, 255));
 
         lblOsOshi.setFont(new Font("Exo 2 Medium", Font.PLAIN, 12)); // NOI18N
         lblOsOshi.setText("Windows 10 Home");
+        lblOsOshi.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

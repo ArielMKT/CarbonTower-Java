@@ -71,6 +71,7 @@ public class Index extends Components {
         lblWelcome = new javax.swing.JLabel();
         lblWelcome.setFont(new Font("Exo 2 Semi Bold", Font.PLAIN, 18)); // NOI18N
         lblWelcome.setText("Bem-vindo nome-jogador!");
+        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
 
         createPanels();
 
